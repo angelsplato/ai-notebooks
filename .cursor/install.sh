@@ -52,9 +52,10 @@ CC=gcc CXX=g++ uv pip install -r "$REPO_ROOT/requirements.txt" \
   --override "$REPO_ROOT/.cursor/pip-overrides.txt"
 
 echo "==> Registering Jupyter kernel 'python3' -> $VENV_DIR"
-# The notebooks declare kernelspec name "python3"; register that name so both
-# JupyterLab and `jupyter nbconvert --execute` pick up this venv automatically.
-python -m ipykernel install --user \
+# The notebooks declare kernelspec name "python3"; install into the venv
+# (--sys-prefix) so it overrides the venv's auto-generated default spec and is
+# the one both JupyterLab and `jupyter nbconvert --execute` pick up.
+python -m ipykernel install --sys-prefix \
   --name python3 \
   --display-name "Python 3 (ai-notebooks)" \
   --env TF_CPP_MIN_LOG_LEVEL 2
