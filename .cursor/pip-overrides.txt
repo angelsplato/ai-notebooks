@@ -1,0 +1,7 @@
+# Dependency version overrides applied during install (uv --override).
+#
+# TensorFlow 2.12 declares typing_extensions>=3.6.6,<4.6.0, but the modern
+# Jupyter stack (referencing/jsonschema) imports typing_extensions.TypeAliasType
+# which only exists in >=4.6. TF 2.12 works fine with the newer release, so we
+# override the upper bound here.
+typing_extensions==4.16.0

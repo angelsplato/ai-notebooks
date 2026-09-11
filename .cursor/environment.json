@@ -1,0 +1,11 @@
+{
+  "name": "ai-notebooks",
+  "install": "bash .cursor/install.sh",
+  "terminals": [
+    {
+      "name": "jupyter",
+      "command": "source \"$HOME/.venv-ai/bin/activate\" && TF_CPP_MIN_LOG_LEVEL=2 jupyter lab --no-browser --ip=0.0.0.0 --port=8888 --ServerApp.token='' --ServerApp.password='' --notebook-dir=."
+    }
+  ],
+  "ports": [8888]
+}

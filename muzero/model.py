@@ -120,7 +120,10 @@ class MuModel():
     a_all, mu_all, loss_all = [], [], []
 
     def softmax_ce_logits(y_true, y_pred):
-      return tf.nn.softmax_cross_entropy_with_logits_v2(y_true, y_pred)
+      # `softmax_cross_entropy_with_logits_v2` was removed from TF>=2.x; the
+      # canonical `softmax_cross_entropy_with_logits` has identical behaviour
+      # (gradients flow into both labels and logits).
+      return tf.nn.softmax_cross_entropy_with_logits(labels=y_true, logits=y_pred)
 
     # run f on the first state
     if self.with_policy:
